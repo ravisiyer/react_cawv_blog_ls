@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const NewnEditForm = ({
   postId = null,
   postTitle,
@@ -42,6 +42,9 @@ const NewnEditForm = ({
         ) : (
           <button type="submit">Save Post</button>
         )}
+        <Link to="/">
+          <button type="button">Cancel</button>
+        </Link>
       </p>
     </form>
   );

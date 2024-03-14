@@ -10,8 +10,8 @@ const Navbar = () => {
 
   return (
     <div className="Navbar">
-      <Link to="/">List of Posts</Link>
-      <Link to="/newpost">New Post</Link>
+      <Link to="/">Posts</Link>
+      <Link to="/newpost">New</Link>
       <form
         className="SearchPostsForm"
         style={pathname !== "/" ? { visibility: "hidden" } : null}

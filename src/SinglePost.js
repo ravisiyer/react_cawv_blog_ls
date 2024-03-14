@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useStoreActions, useStoreState } from "easy-peasy";
 import dayjs from "dayjs";
@@ -11,12 +12,24 @@ const SinglePost = () => {
     const tmpPosts = posts.filter((post) => post.id.toString() !== delPostId);
     setPosts(tmpPosts);
   };
+
+  const postBodyDiv = useRef();
+  useEffect(() => {
+    if (postBodyDiv.current !== undefined) {
+      const sharedLayoutMainDiv = postBodyDiv.current.parentElement;
+      if (sharedLayoutMainDiv !== undefined) {
+        sharedLayoutMainDiv.scrollTo({
+          top: 0,
+        });
+      }
+    }
+  }, []);
   function handleDelete() {
     deletePost(id);
     navigate("/");
   }
   return (
-    <div className="SinglePost">
+    <div ref={postBodyDiv} className="SinglePost">
       {post ? (
         <>
           <h3>{post.title}</h3>
@@ -34,7 +47,7 @@ const SinglePost = () => {
         <h3>Post Not Found</h3>
       )}
       <Link to="/" style={{ display: "block" }}>
-        Back to List of Posts
+        Back to Posts
       </Link>
     </div>
   );
